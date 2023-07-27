@@ -32,6 +32,20 @@ public class DogsHandlerTest {
     }
 
     @Test
+    public void testGetDogById() {
+        DogHandler handler = new DogHandler(itsDogRepo);
+        Dog dog1 = new Dog();
+        handler.addDog(dog1);
+
+        Dog dog2 = new Dog();
+        handler.addDog(dog2);
+
+        dog1 = handler.getDogById(dog1.getId());
+        dog2 = handler.getDogById(dog2.getId());
+
+        assertEquals(dog1.getId(), 1);
+        assertEquals(dog2.getId(), 2);
+  
     public boolean removeDog(long id){
         DogHandler cut = new DogHandler(itsDogRepo);
         Dog theDog = new Dog();
@@ -46,7 +60,6 @@ public class DogsHandlerTest {
         }else{
             return false;
         }
-
     }
 
 }
