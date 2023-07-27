@@ -31,6 +31,30 @@ public class DogsHandlerTest {
 
     }
 
+    @Test
+    void update_dog_details() {
+        // arrange
+        Dog oldDog = new Dog();
+        oldDog.setId(1);
+        oldDog.setName("Uno");
+
+        DogsRepositoryStub cut = new DogsRepositoryStub();
+        Dog theDog = new Dog();
+        theDog.setName("Dos");
+        cut.save(theDog);
+        theDog = new Dog();
+        theDog.setName("Tres");
+        cut.save( theDog );
+
+        // act
+        cut.save(oldDog);
+        Dog actualDog = cut.findById(1);
+
+        // assert
+        assertEquals(oldDog.getName(), actualDog.getName());
+        assertEquals(oldDog.getId(), actualDog.getId());
+    }
+
 }
 
 
