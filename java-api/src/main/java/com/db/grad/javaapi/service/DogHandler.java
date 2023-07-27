@@ -16,4 +16,12 @@ public class DogHandler {
     public long getNoOfDogs() {
         return itsDogRepo.count();
     }
+    public boolean removeDog(long id){
+        boolean res = false;
+        Dog theDog = itsDogRepo.findById(id);
+        if (theDog != null){
+            res = itsDogRepo.delete(theDog);
+        }
+        return res;
+    }
 }

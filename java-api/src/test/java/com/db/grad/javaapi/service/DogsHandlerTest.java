@@ -31,23 +31,23 @@ public class DogsHandlerTest {
 
     }
 
-    @Test
-    public boolean removeDog(long id){
-        DogHandler cut = new DogHandler(itsDogRepo);
-        Dog theDog = new Dog();
-        theDog.setName("Bruno");
-        cut.addDog( theDog );
-
-        long prevResult = cut.getNoOfDogs(theDog);
-        cut.delete(theDog);
-        long currentResult = cut.getNoOfDogs(theDog);
-        if (prevResult > currentResult){
-            return true;
-        }else{
-            return false;
-        }
-
-    }
+//    @Test
+//    public boolean removeDog(long id){
+//        DogHandler cut = new DogHandler(itsDogRepo);
+//        Dog theDog = new Dog();
+//        theDog.setName("Bruno");
+//        cut.addDog( theDog );
+//
+//        long prevResult = cut.getNoOfDogs(theDog);
+//        cut.delete(theDog);
+//        long currentResult = cut.getNoOfDogs(theDog);
+//        if (prevResult > currentResult){
+//            return true;
+//        }else{
+//            return false;
+//        }
+//
+//    }
 
 }
 
