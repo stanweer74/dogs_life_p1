@@ -45,6 +45,21 @@ public class DogsHandlerTest {
 
         assertEquals(dog1.getId(), 1);
         assertEquals(dog2.getId(), 2);
+  
+    public boolean removeDog(long id){
+        DogHandler cut = new DogHandler(itsDogRepo);
+        Dog theDog = new Dog();
+        theDog.setName("Bruno");
+        cut.addDog( theDog );
+
+        long prevResult = cut.getNoOfDogs(theDog);
+        cut.delete(theDog);
+        long currentResult = cut.getNoOfDogs(theDog);
+        if (prevResult > currentResult){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
