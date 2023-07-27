@@ -22,4 +22,6 @@ public class DogHandler {
         dog.setName(name);
         return itsDogRepo.findByName(dog).get(0);
     }
+
+    public Dog getDogById(long id) { return itsDogRepo.findById(id); }
 }
