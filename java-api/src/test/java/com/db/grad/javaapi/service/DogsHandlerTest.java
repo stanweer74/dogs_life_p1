@@ -1,0 +1,99 @@
+package com.db.grad.javaapi.service;
+
+import com.db.grad.javaapi.model.Dog;
+import com.db.grad.javaapi.repository.DogsRepository;
+import com.db.grad.javaapi.repository.DogsRepositoryStub;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+
+public class DogsHandlerTest {
+    private DogsRepository itsDogRepo = new DogsRepositoryStub();
+
+    @BeforeEach
+    public void makeSureRepoIsEmpty(){
+        itsDogRepo.deleteAll();
+    }
+    @Test
+    public void add_a_dog_return_number_of_dogs_in_repo_is_one(){
+        DogHandler cut = new DogHandler(itsDogRepo);
+        Dog theDog = new Dog();
+        theDog.setName("Bruno");
+        cut.addDog( theDog );
+
+        int expectedResult = 1;
+
+        long actualResult = cut.getNoOfDogs();
+
+        assertEquals( expectedResult, actualResult );
+
+    }
+
+<<<<<<< HEAD
+//    @Test
+//    public boolean removeDog(long id){
+//        DogHandler cut = new DogHandler(itsDogRepo);
+//        Dog theDog = new Dog();
+//        theDog.setName("Bruno");
+//        cut.addDog( theDog );
+//
+//        long prevResult = cut.getNoOfDogs(theDog);
+//        cut.delete(theDog);
+//        long currentResult = cut.getNoOfDogs(theDog);
+//        if (prevResult > currentResult){
+//            return true;
+//        }else{
+//            return false;
+//        }
+//
+//    }
+=======
+    @Test
+    public void joes_test() {
+        //intuitive, I know
+        DogHandler cut = new DogHandler(itsDogRepo);
+        Dog theDog = new Dog();
+        theDog.setName("Bruno");
+        cut.addDog(theDog);
+        assertEquals(theDog, cut.getDogByName("Bruno"));
+    }
+
+    @Test
+    public void testGetDogById() {
+        DogHandler handler = new DogHandler(itsDogRepo);
+        Dog dog1 = new Dog();
+        handler.addDog(dog1);
+
+        Dog dog2 = new Dog();
+        handler.addDog(dog2);
+
+        dog1 = handler.getDogById(dog1.getId());
+        dog2 = handler.getDogById(dog2.getId());
+
+        assertEquals(dog1.getId(), 1);
+        assertEquals(dog2.getId(), 2);
+    }
+
+    @Test
+    public boolean removeDog(long id){
+        DogHandler cut = new DogHandler(itsDogRepo);
+        Dog theDog = new Dog();
+        theDog.setName("Bruno");
+        cut.addDog( theDog );
+
+        long prevResult = cut.getNoOfDogs(theDog);
+        cut.delete(theDog);
+        long currentResult = cut.getNoOfDogs(theDog);
+        if (prevResult > currentResult){
+            return true;
+        }else{
+            return false;
+        }
+    }
+>>>>>>> 2eb593aaa32b5cae9efb1b5332da7b549d84f7f9
+
+}
+
+
