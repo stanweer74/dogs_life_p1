@@ -12,5 +12,3 @@ create table dogs (
     primary key (id),
     foreign key (owner_id) references owners(owner_id)
 );
-
-)
