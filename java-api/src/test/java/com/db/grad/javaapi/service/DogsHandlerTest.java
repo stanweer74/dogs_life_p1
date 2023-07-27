@@ -32,6 +32,16 @@ public class DogsHandlerTest {
     }
 
     @Test
+    public void joes_test() {
+        //intuitive, I know
+        DogHandler cut = new DogHandler(itsDogRepo);
+        Dog theDog = new Dog();
+        theDog.setName("Bruno");
+        cut.addDog(theDog);
+        assertEquals(theDog, cut.getDogByName("Bruno"));
+    }
+
+    @Test
     public void testGetDogById() {
         DogHandler handler = new DogHandler(itsDogRepo);
         Dog dog1 = new Dog();
@@ -45,7 +55,9 @@ public class DogsHandlerTest {
 
         assertEquals(dog1.getId(), 1);
         assertEquals(dog2.getId(), 2);
-  
+    }
+
+    @Test
     public boolean removeDog(long id){
         DogHandler cut = new DogHandler(itsDogRepo);
         Dog theDog = new Dog();

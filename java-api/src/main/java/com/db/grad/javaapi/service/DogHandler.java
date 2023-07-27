@@ -17,5 +17,11 @@ public class DogHandler {
         return itsDogRepo.count();
     }
 
+    public Dog getDogByName(String name) {
+        Dog dog = new Dog();
+        dog.setName(name);
+        return itsDogRepo.findByName(dog).get(0);
+    }
+
     public Dog getDogById(long id) { return itsDogRepo.findById(id); }
 }
