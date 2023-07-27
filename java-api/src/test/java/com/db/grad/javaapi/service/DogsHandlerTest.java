@@ -31,28 +31,32 @@ public class DogsHandlerTest {
 
     }
 
-    @Test
-    void update_dog_details() {
-        // arrange
-        Dog oldDog = new Dog();
-        oldDog.setId(1);
-        oldDog.setName("Uno");
 
-        DogsRepositoryStub cut = new DogsRepositoryStub();
+    @Test
+    public void update_dog_details_returns_dog_id()
+    {
+        // arrange
+        DogHandler cut = new DogHandler(itsDogRepo);
         Dog theDog = new Dog();
+        theDog.setName("Uno");
+        cut.addDog(theDog);
+
+        theDog = new Dog();
         theDog.setName("Dos");
-        cut.save(theDog);
+        long expectedResult = cut.addDog(theDog);
+
+        Dog dogToUpdate = theDog;
+        String dogToFind = "Dos";
         theDog = new Dog();
         theDog.setName("Tres");
-        cut.save( theDog );
+        cut.addDog(theDog);
 
         // act
-        cut.save(oldDog);
-        Dog actualDog = cut.findById(1);
+        dogToUpdate.setName("Cuatro");
+        long actualResult = cut.updateDogDetails( dogToUpdate );
 
         // assert
-        assertEquals(oldDog.getName(), actualDog.getName());
-        assertEquals(oldDog.getId(), actualDog.getId());
+        assertEquals( expectedResult, actualResult );
     }
 
 }
