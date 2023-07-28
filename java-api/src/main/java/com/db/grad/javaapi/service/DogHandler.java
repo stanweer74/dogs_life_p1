@@ -3,38 +3,65 @@ package com.db.grad.javaapi.service;
 import com.db.grad.javaapi.model.Dog;
 import com.db.grad.javaapi.repository.DogsRepository;
 
-public class DogHandler {
-    private DogsRepository itsDogRepo;
-    public DogHandler(DogsRepository repo) {
-        itsDogRepo = repo;
+import java.util.List;
+import java.util.Optional;
+
+public class DogHandler implements IDogsService {
+    private DogsRepository itsDogsRepo;
+
+    public DogHandler(DogsRepository dogRepo) {
+        itsDogsRepo = dogRepo;
     }
 
-    public long addDog(Dog theDog) {
-        return itsDogRepo.save(theDog);
+    @Override
+    public List<Dog> getAllDogs() {
+        return itsDogsRepo.findAll();
     }
 
+    @Override
+    public Dog addDog(Dog theDog) {
+        return itsDogsRepo.save(theDog);
+    }
+
+    @Override
     public long getNoOfDogs() {
-        return itsDogRepo.count();
+        return itsDogsRepo.count();
     }
-    public boolean removeDog(long id){
-        boolean res = false;
-        Dog theDog = itsDogRepo.findById(id);
-        if (theDog != null){
-            res = itsDogRepo.delete(theDog);
+
+    @Override
+    public boolean removeDog(long uniqueId) {
+        boolean result = false;
+
+        Optional<Dog> theDog = Optional.ofNullable(itsDogsRepo.findById(uniqueId));
+        if (theDog.isPresent()) {
+            itsDogsRepo.delete(theDog.get());
+            result = true;
         }
-        return res;
+
+        return result;
     }
 
-    public Dog getDogByName(String name) {
-        Dog dog = new Dog();
-        dog.setName(name);
-        return itsDogRepo.findByName(dog).get(0);
+
+    @Override
+    public Dog getDogById(long uniqueId) {
+        return itsDogsRepo.findById(uniqueId);
     }
 
-    public Dog getDogById(long id) { return itsDogRepo.findById(id); }
+    @Override
+    public Dog getDogByName(String dogsName) {
+        Dog dogToFind = new Dog();
+        dogToFind.setName(dogsName);
+        List<Dog> dogs = itsDogsRepo.findByName(dogToFind);
+        Dog result = null;
 
-    public long updateDogDetails(Dog dogToUpdate)
-    {
-        return itsDogRepo.save(dogToUpdate);
+        if (dogs.size() == 1)
+            result = dogs.get(0);
+
+        return result;
+    }
+
+    @Override
+    public Dog updateDogDetails(Dog dogToUpdate) {
+        return itsDogsRepo.save(dogToUpdate);
     }
 }
