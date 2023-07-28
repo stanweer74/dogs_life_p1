@@ -19,6 +19,6 @@ public class DogHandler {
 
     public long updateDogDetails(Dog dogToUpdate)
     {
-        return itsDogsRepo.save(dogToUpdate);
+        return itsDogRepo.save(dogToUpdate);
     }
 }

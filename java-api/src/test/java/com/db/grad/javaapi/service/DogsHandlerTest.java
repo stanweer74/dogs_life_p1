@@ -46,7 +46,6 @@ public class DogsHandlerTest {
         long expectedResult = cut.addDog(theDog);
 
         Dog dogToUpdate = theDog;
-        String dogToFind = "Dos";
         theDog = new Dog();
         theDog.setName("Tres");
         cut.addDog(theDog);
