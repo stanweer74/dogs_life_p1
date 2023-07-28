@@ -31,25 +31,33 @@ public class DogsHandlerTest {
 
     }
 
-<<<<<<< HEAD
-//    @Test
-//    public boolean removeDog(long id){
-//        DogHandler cut = new DogHandler(itsDogRepo);
-//        Dog theDog = new Dog();
-//        theDog.setName("Bruno");
-//        cut.addDog( theDog );
-//
-//        long prevResult = cut.getNoOfDogs(theDog);
-//        cut.delete(theDog);
-//        long currentResult = cut.getNoOfDogs(theDog);
-//        if (prevResult > currentResult){
-//            return true;
-//        }else{
-//            return false;
-//        }
-//
-//    }
-=======
+
+    @Test
+    public void update_dog_details_returns_dog_id()
+    {
+        // arrange
+        DogHandler cut = new DogHandler(itsDogRepo);
+        Dog theDog = new Dog();
+        theDog.setName("Uno");
+        cut.addDog(theDog);
+
+        theDog = new Dog();
+        theDog.setName("Dos");
+        long expectedResult = cut.addDog(theDog);
+
+        Dog dogToUpdate = theDog;
+        theDog = new Dog();
+        theDog.setName("Tres");
+        cut.addDog(theDog);
+
+        // act
+        dogToUpdate.setName("Cuatro");
+        long actualResult = cut.updateDogDetails( dogToUpdate );
+
+        // assert
+        assertEquals( expectedResult, actualResult );
+    }
+
     @Test
     public void joes_test() {
         //intuitive, I know
@@ -75,25 +83,6 @@ public class DogsHandlerTest {
         assertEquals(dog1.getId(), 1);
         assertEquals(dog2.getId(), 2);
     }
-
-    @Test
-    public boolean removeDog(long id){
-        DogHandler cut = new DogHandler(itsDogRepo);
-        Dog theDog = new Dog();
-        theDog.setName("Bruno");
-        cut.addDog( theDog );
-
-        long prevResult = cut.getNoOfDogs(theDog);
-        cut.delete(theDog);
-        long currentResult = cut.getNoOfDogs(theDog);
-        if (prevResult > currentResult){
-            return true;
-        }else{
-            return false;
-        }
-    }
->>>>>>> 2eb593aaa32b5cae9efb1b5332da7b549d84f7f9
-
 }
 
 
