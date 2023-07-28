@@ -31,7 +31,6 @@ public class DogsHandlerTest {
 
     }
 
-<<<<<<< HEAD
 //    @Test
 //    public boolean removeDog(long id){
 //        DogHandler cut = new DogHandler(itsDogRepo);
@@ -49,7 +48,6 @@ public class DogsHandlerTest {
 //        }
 //
 //    }
-=======
     @Test
     public void joes_test() {
         //intuitive, I know
@@ -77,23 +75,18 @@ public class DogsHandlerTest {
     }
 
     @Test
-    public boolean removeDog(long id){
+    public void removeDogTest(){
         DogHandler cut = new DogHandler(itsDogRepo);
         Dog theDog = new Dog();
         theDog.setName("Bruno");
         cut.addDog( theDog );
 
-        long prevResult = cut.getNoOfDogs(theDog);
-        cut.delete(theDog);
-        long currentResult = cut.getNoOfDogs(theDog);
-        if (prevResult > currentResult){
-            return true;
-        }else{
-            return false;
-        }
+        boolean curStatus = cut.removeDog(theDog.getId());
+        long curResult = cut.getNoOfDogs();
+
+	    assertEquals(true, curStatus);
+	    assertEquals(1, curResult);
     }
->>>>>>> 2eb593aaa32b5cae9efb1b5332da7b549d84f7f9
 
 }
-
 
