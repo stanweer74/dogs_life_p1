@@ -31,7 +31,6 @@ public class DogsHandlerTest {
 
     }
 
-
     @Test
     public void update_dog_details_returns_dog_id()
     {
@@ -83,6 +82,17 @@ public class DogsHandlerTest {
         assertEquals(dog1.getId(), 1);
         assertEquals(dog2.getId(), 2);
     }
-}
 
+    @Test
+    public void removeDogTest(){
+        DogHandler cut = new DogHandler(itsDogRepo);
+        Dog theDog = new Dog();
+        theDog.setName("Bruno");
+        cut.addDog( theDog );
 
+        boolean curStatus = cut.removeDog(theDog.getId());
+        long curResult = cut.getNoOfDogs();
+
+	    assertEquals(true, curStatus);
+	    assertEquals(1, curResult);
+    }

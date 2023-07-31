@@ -3,6 +3,8 @@ package com.db.grad.javaapi.service;
 import com.db.grad.javaapi.model.Dog;
 import com.db.grad.javaapi.repository.DogsRepository;
 
+import java.util.Optional;
+
 public class DogHandler {
     private DogsRepository itsDogRepo;
     public DogHandler(DogsRepository repo) {
@@ -18,9 +20,10 @@ public class DogHandler {
     }
     public boolean removeDog(long id){
         boolean res = false;
-        Dog theDog = itsDogRepo.findById(id);
-        if (theDog != null){
-            res = itsDogRepo.delete(theDog);
+        Optional<Dog> theDog = Optional.ofNullable(itsDogRepo.findById(id));
+        if (theDog.isPresent()){
+            itsDogRepo.delete(theDog.get());
+            res = true;
         }
         return res;
     }
