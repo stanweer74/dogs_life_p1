@@ -13,27 +13,27 @@ public class DogsHandlerTest {
     private DogsRepository itsDogRepo = new DogsRepositoryStub();
 
     @BeforeEach
-    public void makeSureRepoIsEmpty(){
+    public void makeSureRepoIsEmpty() {
         itsDogRepo.deleteAll();
     }
+
     @Test
-    public void add_a_dog_return_number_of_dogs_in_repo_is_one(){
+    public void add_a_dog_return_number_of_dogs_in_repo_is_one() {
         DogHandler cut = new DogHandler(itsDogRepo);
         Dog theDog = new Dog();
         theDog.setName("Bruno");
-        cut.addDog( theDog );
+        cut.addDog(theDog);
 
         int expectedResult = 1;
 
         long actualResult = cut.getNoOfDogs();
 
-        assertEquals( expectedResult, actualResult );
+        assertEquals(expectedResult, actualResult);
 
     }
 
     @Test
-    public void update_dog_details_returns_dog_id()
-    {
+    public void update_dog_details_returns_dog_id() {
         // arrange
         DogHandler cut = new DogHandler(itsDogRepo);
         Dog theDog = new Dog();
@@ -51,10 +51,10 @@ public class DogsHandlerTest {
 
         // act
         dogToUpdate.setName("Cuatro");
-        long actualResult = cut.updateDogDetails( dogToUpdate );
+        long actualResult = cut.updateDogDetails(dogToUpdate);
 
         // assert
-        assertEquals( expectedResult, actualResult );
+        assertEquals(expectedResult, actualResult);
     }
 
     @Test
@@ -84,15 +84,16 @@ public class DogsHandlerTest {
     }
 
     @Test
-    public void removeDogTest(){
+    public void removeDogTest() {
         DogHandler cut = new DogHandler(itsDogRepo);
         Dog theDog = new Dog();
         theDog.setName("Bruno");
-        cut.addDog( theDog );
+        cut.addDog(theDog);
 
         boolean curStatus = cut.removeDog(theDog.getId());
         long curResult = cut.getNoOfDogs();
 
-	    assertEquals(true, curStatus);
-	    assertEquals(1, curResult);
+        assertEquals(true, curStatus);
+        assertEquals(0, curResult);
     }
+}
